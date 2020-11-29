@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import { View } from 'react-native'
+import {
+  View,
+  Text
+} from 'react-native'
 
 export default function point({
-  index,
   left,
   top,
-  onRef
+  onRef,
+  initialSize
 }) {
-  const [size, setSize] = useState(0)
+  const [size, setSize] = useState(initialSize)
   onRef({ setSize: setSize })
   return (
     <View
@@ -15,10 +18,11 @@ export default function point({
         position: 'absolute',
         left: left,
         top: top,
-        height: index,
-        width: index,
+        height: size,
+        width: size,
         borderRadius: 6,
         backgroundColor: 'red',
+        opacity: size > 5 ? 1 : (size > 3 ? 0.7 : 0.5),
         alignItems: 'center',
         justifyContent: 'center'
       }} />
