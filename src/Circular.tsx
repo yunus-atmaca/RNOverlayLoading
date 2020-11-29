@@ -27,7 +27,11 @@ const CENTER_POINT = {
   y: height / 2,
 }
 
-class Circular extends React.Component {
+interface CircularProps {
+  loadingColor?: string
+}
+
+class Circular extends React.Component<CircularProps, any> {
 
   currentIndex: number
   interval: any
@@ -89,7 +93,7 @@ class Circular extends React.Component {
       this.interval = null
     }
 
-    /*this.interval = setInterval(() => {
+    this.interval = setInterval(() => {
       this.currentIndex = this.currentIndex === 11 ? 0 : this.currentIndex + 1
       for (let i = 0; i <= 11; ++i) {
         let index = this.currentIndex - i < 0 ?
@@ -98,7 +102,7 @@ class Circular extends React.Component {
           (this.currentIndex - i)
         this[index].setSize(this._getSize(i))
       }
-    }, 180)*/
+    }, 180)
   }
 
   render() {
@@ -113,6 +117,7 @@ class Circular extends React.Component {
                 initialSize={this._getSize(Math.abs(index - 11))}
                 left={RADIUS * Math.cos(this.toRadians(DEGREE) * index) + CENTER_POINT.x}
                 top={RADIUS * Math.sin(this.toRadians(DEGREE) * index) + CENTER_POINT.y}
+                color={this.props.loadingColor}
               />
             )
           })

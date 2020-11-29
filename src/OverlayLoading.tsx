@@ -16,6 +16,7 @@ interface OverlayLoadingProps {
   loading: boolean
   overlayBackgroundColor?: string
   loadingText?: string
+  loadingColor?: string
   type?: LoadingType
 }
 
@@ -28,7 +29,7 @@ enum LType {
   Linear = 'Linear'
 }
 
-class OverlayLoading<P extends OverlayLoadingProps> extends React.Component<P, any> {
+class OverlayLoading extends React.Component<OverlayLoadingProps, any> {
 
   constructor(props) {
     super(props)
@@ -48,7 +49,9 @@ class OverlayLoading<P extends OverlayLoadingProps> extends React.Component<P, a
 
   private _getLoadingView = () => {
     return (
-      <Circular />
+      <Circular
+        loadingColor={this.props.loadingColor || '#cf000f'}
+      />
     )
   }
 
@@ -57,25 +60,29 @@ class OverlayLoading<P extends OverlayLoadingProps> extends React.Component<P, a
       return null
     return (
       <View style={[StyleSheet.absoluteFill, {
-        backgroundColor: 'rgba(20,20,20, .25)'
+        backgroundColor: this.props.overlayBackgroundColor || 'rgba(20,20,20, .25)'
       }]}>
         {
           this._getLoadingView()
         }
-        <View style={{
-          height: 56,
-          width: Dimensions.get('window').width,
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: height / 2 + 24
-        }}>
-          <Text style={{
-            color: 'black',
-            fontSize: 16,
-          }}>
-            Loading...
-          </Text>
-        </View>
+        {
+          this.props.loadingText !== '' && this.props.loadingText && (
+            <View style={{
+              height: 56,
+              width: Dimensions.get('window').width,
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: height / 2 + 24
+            }}>
+              <Text style={{
+                color: 'black',
+                fontSize: 16,
+              }}>
+                {this.props.loadingText}
+              </Text>
+            </View>
+          )
+        }
       </View>
     )
   }

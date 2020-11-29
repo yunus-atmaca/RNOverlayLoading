@@ -8,7 +8,8 @@ export default function point({
   left,
   top,
   onRef,
-  initialSize
+  initialSize,
+  color
 }) {
   const [size, setSize] = useState(initialSize)
   onRef({ setSize: setSize })
@@ -21,8 +22,8 @@ export default function point({
         height: size,
         width: size,
         borderRadius: 6,
-        backgroundColor: 'red',
-        opacity: size > 5 ? 1 : (size > 3 ? 0.7 : 0.5),
+        backgroundColor: color,
+        opacity: size > 5 ? 1 : (size > 3 ? 0.75 : 0.45),
         alignItems: 'center',
         justifyContent: 'center'
       }} />
