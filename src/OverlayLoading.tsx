@@ -41,8 +41,6 @@ class OverlayLoading extends React.Component<OverlayLoadingProps, any> {
 
     if (this.props.type) {
       let splitType = this.props.type.split('-')
-
-      //console.log(splitType)
       if (splitType[0] === 'Circular') {
         return (
           <Circular
@@ -74,7 +72,11 @@ class OverlayLoading extends React.Component<OverlayLoadingProps, any> {
         backgroundColor: this.props.overlayBackgroundColor || 'rgba(20,20,20, .25)'
       }]}>
         {
-          this._getLoadingView()
+          <View style={StyleSheet.absoluteFill}>
+            {
+              this._getLoadingView()
+            }
+          </View>
         }
         {
           <View style={{

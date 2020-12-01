@@ -6,8 +6,11 @@ import {
   TouchableOpacity
 } from 'react-native'
 
+import Svg, { Circle } from 'react-native-svg'
+
 import Point from './components/Point'
 import Line from './components/Line'
+import Default from './components/Default'
 
 export enum CircularType {
   Circle = 'Circle',
@@ -29,7 +32,7 @@ const CENTER_POINT = {
 }
 
 interface CircularProps {
-  loadingColor?: string
+  loadingColor: string
   type: CircularType | string
 }
 
@@ -85,6 +88,9 @@ class Circular extends React.Component<CircularProps, any> {
         return 2;
       case 11:
         return 0;
+
+      default:
+        return 0
     }
   }
 
@@ -109,6 +115,9 @@ class Circular extends React.Component<CircularProps, any> {
         return 0.35;
       case 11:
         return 0.25;
+
+      default:
+        return 0
     }
   }
 
@@ -142,12 +151,16 @@ class Circular extends React.Component<CircularProps, any> {
       }, 180)
     } else if (this.props.type === CircularType.Default) {
 
+    } else {
+
     }
   }
 
   render() {
     return (
-      <View onLayout={this._onLayout}>
+      <View style={{
+        flex: 1
+      }} onLayout={this._onLayout}>
         {
           colr.map((_, index) => {
             if (this.props.type === CircularType.Line) {
@@ -174,7 +187,19 @@ class Circular extends React.Component<CircularProps, any> {
                 />
               )
             } else if (this.props.type === CircularType.Default) {
-              return null
+              if (index === 0) {
+                return (
+                  <View style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                    <Default
+                      radius={RADIUS}
+                    />
+                  </View>
+                )
+              }
             } else {
               return null
             }

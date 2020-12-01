@@ -1,5 +1,9 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import {
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native'
 import OverlayLoading, { LoadingType } from './src/OverlayLoading'
 
 class App extends React.Component {
@@ -23,7 +27,7 @@ class App extends React.Component {
           loading={true}
           loadingColor={'red'}
           loadingText={'Loading...'}
-          type={LoadingType.CircularLine}
+          type={LoadingType.CircularDefault}
           renderLoadingText={() => {
             return (
               <Text style={{

@@ -1,6 +1,15 @@
 import React, { useState } from 'react'
 import { View } from 'react-native'
 
+interface LineProps {
+  onRef: (ref) => void
+  left: number
+  top: number
+  degree: number
+  color: string
+  initialOpacity: number
+}
+
 export default function line({
   onRef,
   left,
@@ -8,7 +17,7 @@ export default function line({
   degree,
   color,
   initialOpacity
-}) {
+}: LineProps) {
   const [opacity, setOpacity] = useState(initialOpacity)
   onRef({ setOpacity: setOpacity })
   return (

@@ -4,13 +4,21 @@ import {
   Text
 } from 'react-native'
 
+interface PointProps {
+  onRef: (ref) => void
+  left: number
+  top: number
+  initialSize: number
+  color: string
+}
+
 export default function point({
+  onRef,
   left,
   top,
-  onRef,
   initialSize,
   color
-}) {
+}: PointProps) {
   const [size, setSize] = useState(initialSize)
   onRef({ setSize: setSize })
   return (
